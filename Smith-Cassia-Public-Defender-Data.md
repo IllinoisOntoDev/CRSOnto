@@ -55,3 +55,8 @@ The jacket number is a simple but essential piece of identifying information for
 
 The name of the police officer involved in the case and a copy of the police report are two pieces of information public defenders typically need in order to build their case. Again, this is not information in our copy of the jail data, but it seems worth including (assuming the actual database doesn't include it, which seems surprising to me).
 
+
+## Proposed Community Connections Ontology
+
+Based on these observations, most of the information needed by the public defenders is represented in the ontologies being developed by my colleagues. One potential gap that I see is an ontological description of community connections. This could incorporate terms from the employment, mental health, and charge ontologies, but also incorporate age, marital status, residence, citizenship, and possibly military status values as well. It could use the VRAI pretrial risk assessment instrument mentioned in the Champaign County report as a starting point, but incorporate information from the jail data on other aspects of the defendant's life as well. 
+
