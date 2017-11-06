@@ -1,0 +1,50 @@
+# Community Ties Ontology
+
+## Employment Status
+- employed
+- unemployed
+(or whatever similar terms are available from the employment ontology)
+
+## relationship status
+- in a relationship (married/significant other)
+- single (single/divorced/widowed/separated)
+- unknown (blank)
+
+## mental health ontology reference 
+
+(not clear enough on how this ontology will ultimately be developed to know exactly how it can be incorporated)
+
+## student status
+- student (student from EMPLOYMENT *OR* attends non-local school from SCHOOL *OR* student from OCCUPATION)
+- unknown (blank)
+- not enrolled (any other value)
+
+## age
+
+- age at arrest (don't think this needs subclasses)
+
+## level of education
+
+- graduated from high school ("graduated from high school")
+- completed GED program ("completed GED program")
+- unknown (blank *OR* a school name. The use of school names in the SCHOOL field is too unclear for me to infer a proper interpretation of it. At best, I'd say "attended classes there at some point," but diploma/current enrollment status is too difficult to glean.)
+
+## military service
+
+- unknown (blank)
+- none (none)
+- veteran (all listed service branches)
+
+## charge ontology
+
+- past charges
+    + import charge ontology
+- pending charges
+    + import charge ontology
+
+## residence
+
+- local resident
+    + in-county addresses (hopefully can use geo ontology?)
+- non-local resident
+    + out-of-county addresses (hopefully can use geo ontology?)
