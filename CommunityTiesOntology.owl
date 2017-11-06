@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.example.com/Example"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.example.com/Example">
+    <Prefix name="" IRI="http://www.example.com/"/>
+    <Prefix name="dc" IRI="http://purl.org/dc/elements/1.1/"/>
+    <Prefix name="tl" IRI="http://purl.org/NET/c4dm/timeline.owl#"/>
+    <Prefix name="dbp" IRI="http://dbpedia.org/resource/"/>
+    <Prefix name="geo" IRI="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+    <Prefix name="org" IRI="http://www.w3.org/ns/org#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="xsp" IRI="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"/>
+    <Prefix name="foaf" IRI="http://xmlns.com/foaf/0.1/"/>
+    <Prefix name="prov" IRI="http://www.w3.org/ns/prov#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="skos" IRI="http://www.w3.org/2004/02/skos/core#"/>
+    <Prefix name="swrl" IRI="http://www.w3.org/2003/11/swrl#"/>
+    <Prefix name="wped" IRI="http://en.wikipedia.org/wiki/"/>
+    <Prefix name="dolce" IRI="http://ontology.ip.rm.cnr.it/ontologies/DOLCE-Lite#"/>
+    <Prefix name="event" IRI="http://purl.org/NET/c4dm/event.owl#"/>
+    <Prefix name="swrlb" IRI="http://www.w3.org/2003/11/swrlb#"/>
+    <Prefix name="dcterms" IRI="http://purl.org/dc/terms/"/>
+    <Prefix name="protege" IRI="http://protege.stanford.edu/plugins/owl/protege#"/>
+    <Import>http://purl.org/NET/c4dm/event.owl</Import>
+    <Import>http://xmlns.com/foaf/0.1/</Import>
+    <Declaration>
+        <NamedIndividual IRI="#Unknown"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#None"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Arresting_Agency"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#United_States_Army"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Veteran_Status"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Full-Time_Employment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Charge"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#National_Guard"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Spouse"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Employer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#School"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Relationship_Status"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Retired"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Significant_Other"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Client"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Student"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Unemployed"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Romantic_Partner"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Employment_Status"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#U.S._Military"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#United_States_Air_Force"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI=":Detention_Event"/>
+    </Declaration>
+    <SubClassOf>
+        <Class abbreviatedIRI=":Detention_Event"/>
+        <Class abbreviatedIRI="event:Event"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Arresting_Agency"/>
+        <Class abbreviatedIRI="foaf:Organization"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Charge"/>
+        <Class abbreviatedIRI="event:Product"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Client"/>
+        <Class abbreviatedIRI="event:Factor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Employer"/>
+        <Class abbreviatedIRI="foaf:Organization"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Employment_Status"/>
+        <Class abbreviatedIRI="event:Product"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Relationship_Status"/>
+        <Class abbreviatedIRI="event:Product"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Romantic_Partner"/>
+        <Class abbreviatedIRI="foaf:Person"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#School"/>
+        <Class abbreviatedIRI="foaf:Organization"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#U.S._Military"/>
+        <Class abbreviatedIRI="foaf:Organization"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Veteran_Status"/>
+        <Class abbreviatedIRI="event:Product"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#Employment_Status"/>
+        <NamedIndividual IRI="#Full-Time_Employment"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#U.S._Military"/>
+        <NamedIndividual IRI="#National_Guard"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Romantic_Partner"/>
+        <NamedIndividual IRI="#None"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#U.S._Military"/>
+        <NamedIndividual IRI="#None"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Employment_Status"/>
+        <NamedIndividual IRI="#Retired"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Romantic_Partner"/>
+        <NamedIndividual IRI="#Significant_Other"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Romantic_Partner"/>
+        <NamedIndividual IRI="#Spouse"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Employment_Status"/>
+        <NamedIndividual IRI="#Unemployed"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#U.S._Military"/>
+        <NamedIndividual IRI="#United_States_Air_Force"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#U.S._Military"/>
+        <NamedIndividual IRI="#United_States_Army"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Employment_Status"/>
+        <NamedIndividual IRI="#Unknown"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Romantic_Partner"/>
+        <NamedIndividual IRI="#Unknown"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#U.S._Military"/>
+        <NamedIndividual IRI="#Unknown"/>
+    </ClassAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
