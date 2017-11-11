@@ -6,7 +6,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://www.example.com/Example">
-    <Prefix name="" IRI="http://www.example.com/"/>
+    <Prefix name="" IRI="http://www.example.com/Example"/>
     <Prefix name="dc" IRI="http://purl.org/dc/elements/1.1/"/>
     <Prefix name="tl" IRI="http://purl.org/NET/c4dm/timeline.owl#"/>
     <Prefix name="dbp" IRI="http://dbpedia.org/resource/"/>
@@ -28,7 +28,9 @@
     <Prefix name="swrlb" IRI="http://www.w3.org/2003/11/swrlb#"/>
     <Prefix name="dcterms" IRI="http://purl.org/dc/terms/"/>
     <Prefix name="protege" IRI="http://protege.stanford.edu/plugins/owl/protege#"/>
+    <Import>http://purl.org/vocab/relationship/</Import>
     <Import>http://purl.org/NET/c4dm/event.owl</Import>
+    <Import>http://purl.org/lis590od/Fall17/OrgRel</Import>
     <Import>http://xmlns.com/foaf/0.1/</Import>
     <Declaration>
         <NamedIndividual IRI="#Unknown"/>
@@ -43,9 +45,6 @@
         <NamedIndividual IRI="#United_States_Army"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Veteran_Status"/>
-    </Declaration>
-    <Declaration>
         <NamedIndividual IRI="#Full-Time_Employment"/>
     </Declaration>
     <Declaration>
@@ -61,10 +60,10 @@
         <Class IRI="#Employer"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#School"/>
+        <Class IRI="#Age_at_Arrest"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Relationship_Status"/>
+        <Class IRI="#School"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Retired"/>
@@ -76,7 +75,16 @@
         <Class IRI="#Client"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/participantIn"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/employerOf"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#Student"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Romantic_Partner_Of"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Unemployed"/>
@@ -85,20 +93,21 @@
         <Class IRI="#Romantic_Partner"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Employment_Status"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#U.S._Military"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#United_States_Air_Force"/>
     </Declaration>
     <Declaration>
-        <Class abbreviatedIRI=":Detention_Event"/>
+        <Class IRI="http://www.example.com/Detention_Event"/>
     </Declaration>
     <SubClassOf>
-        <Class abbreviatedIRI=":Detention_Event"/>
-        <Class abbreviatedIRI="event:Event"/>
+        <Class IRI="http://www.example.com/Detention_Event"/>
+        <Class IRI="http://purl.org/lis590od/Fall17/OrgRel#OrganizationRelationship"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Age_at_Arrest"/>
+        <Class IRI="http://www.w3.org/2006/time#ProperInterval"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Arresting_Agency"/>
@@ -113,16 +122,12 @@
         <Class abbreviatedIRI="event:Factor"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Client"/>
+        <Class abbreviatedIRI="foaf:Person"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Employer"/>
         <Class abbreviatedIRI="foaf:Organization"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Employment_Status"/>
-        <Class abbreviatedIRI="event:Product"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Relationship_Status"/>
-        <Class abbreviatedIRI="event:Product"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Romantic_Partner"/>
@@ -136,14 +141,6 @@
         <Class IRI="#U.S._Military"/>
         <Class abbreviatedIRI="foaf:Organization"/>
     </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Veteran_Status"/>
-        <Class abbreviatedIRI="event:Product"/>
-    </SubClassOf>
-    <ClassAssertion>
-        <Class IRI="#Employment_Status"/>
-        <NamedIndividual IRI="#Full-Time_Employment"/>
-    </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#U.S._Military"/>
         <NamedIndividual IRI="#National_Guard"/>
@@ -157,20 +154,12 @@
         <NamedIndividual IRI="#None"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Employment_Status"/>
-        <NamedIndividual IRI="#Retired"/>
-    </ClassAssertion>
-    <ClassAssertion>
         <Class IRI="#Romantic_Partner"/>
         <NamedIndividual IRI="#Significant_Other"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Romantic_Partner"/>
         <NamedIndividual IRI="#Spouse"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="#Employment_Status"/>
-        <NamedIndividual IRI="#Unemployed"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#U.S._Military"/>
@@ -181,10 +170,6 @@
         <NamedIndividual IRI="#United_States_Army"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Employment_Status"/>
-        <NamedIndividual IRI="#Unknown"/>
-    </ClassAssertion>
-    <ClassAssertion>
         <Class IRI="#Romantic_Partner"/>
         <NamedIndividual IRI="#Unknown"/>
     </ClassAssertion>
@@ -192,6 +177,96 @@
         <Class IRI="#U.S._Military"/>
         <NamedIndividual IRI="#Unknown"/>
     </ClassAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/engagedTo"/>
+        <ObjectProperty IRI="#Romantic_Partner_Of"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/lifePartnerOf"/>
+        <ObjectProperty IRI="#Romantic_Partner_Of"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/spouseOf"/>
+        <ObjectProperty IRI="#Romantic_Partner_Of"/>
+    </SubObjectPropertyOf>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/employerOf"/>
+    </SymmetricObjectProperty>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#Romantic_Partner_Of"/>
+    </SymmetricObjectProperty>
+    <SymmetricObjectProperty>
+        <ObjectProperty abbreviatedIRI="foaf:member"/>
+    </SymmetricObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/employerOf"/>
+        <Class IRI="#Employer"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/participantIn"/>
+        <Class IRI="#Client"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Romantic_Partner_Of"/>
+        <Class IRI="#Romantic_Partner"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#hasTemporalDuration"/>
+        <Class IRI="#Client"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty abbreviatedIRI="foaf:member"/>
+        <Class IRI="#U.S._Military"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/employerOf"/>
+        <Class IRI="#Client"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/participantIn"/>
+        <Class IRI="#School"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Romantic_Partner_Of"/>
+        <Class IRI="#Client"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#hasTemporalDuration"/>
+        <Class IRI="#Age_at_Arrest"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="foaf:member"/>
+        <Class IRI="#Client"/>
+    </ObjectPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="foaf:age"/>
+        <Class IRI="#Age_at_Arrest"/>
+    </DataPropertyDomain>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Arresting_Agency</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Agency placing the client under arrest</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Client</IRI>
+        <Literal datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">The detainee</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Romantic_Partner</IRI>
+        <Literal datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Person with whom the client claims to have a committed romantic partnership</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Romantic_Partner_Of</IRI>
+        <Literal datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">In a committed romantic relationship with</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#U.S._Military</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">U.S. Military conferring active or veteran status on the client</Literal>
+    </AnnotationAssertion>
 </Ontology>
 
 
