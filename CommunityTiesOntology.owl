@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <Ontology xmlns="http://www.w3.org/2002/07/owl#"
-     xml:base="http://www.example.com/Example"
+     xml:base="http://purl.org/lis590OD/Fall17/CommunityTies#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     ontologyIRI="http://www.example.com/Example">
-    <Prefix name="" IRI="http://www.example.com/Example"/>
+     ontologyIRI="http://purl.org/lis590OD/Fall17/CommunityTies#">
+    <Prefix name="" IRI="http://purl.org/lis590OD/Fall17/CommunityTies"/>
     <Prefix name="dc" IRI="http://purl.org/dc/elements/1.1/"/>
     <Prefix name="tl" IRI="http://purl.org/NET/c4dm/timeline.owl#"/>
     <Prefix name="dbp" IRI="http://dbpedia.org/resource/"/>
