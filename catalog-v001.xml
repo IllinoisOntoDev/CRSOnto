@@ -2,7 +2,7 @@
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri id="Imports Wizard Entry" name="http://purl.org/vocab/relationship/" uri="http://vocab.org/relationship/rel-vocab-20100607.rdf"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1511994356102" name="http://purl.org/NET/c4dm/event.owl" uri="Untitled.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1511994356102" name="http://purl.org/lis590OD/Fall17/CommunityTies" uri="CommunityTiesOntology.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1512327512959" name="http://purl.org/NET/c4dm/event.owl" uri="Untitled.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1512327512959" name="http://purl.org/lis590OD/Fall17/CommunityTies" uri="CommunityTiesOntology.owl"/>
     </group>
 </catalog>
