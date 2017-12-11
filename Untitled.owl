@@ -6,6 +6,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://purl.org/NET/c4dm/event.owl">
+    <Prefix name="" IRI="http://purl.org/NET/c4dm/event.owl"/>
     <Prefix name="dc" IRI="http://purl.org/dc/elements/1.1/"/>
     <Prefix name="vs" IRI="http://www.w3.org/2003/06/sw-vocab-status/ns#"/>
     <Prefix name="geo" IRI="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
@@ -48,10 +49,10 @@
         <ObjectProperty IRI="#factor"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#hasProduct"/>
+        <DataProperty abbreviatedIRI="dc:date"/>
     </Declaration>
     <Declaration>
-        <DataProperty abbreviatedIRI="dc:date"/>
+        <ObjectProperty IRI="#hasProduct"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#place"/>
@@ -67,6 +68,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="#Event"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://moustaki.org/foaf.rdf#moustaki"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#producedIn"/>
@@ -108,16 +112,13 @@
         <ObjectProperty IRI="#agent"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI=""/>
+    </Declaration>
+    <Declaration>
         <Class abbreviatedIRI="foaf:Person"/>
     </Declaration>
     <Declaration>
         <Class abbreviatedIRI="geo:SpatialThing"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI=""/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://moustaki.org/foaf.rdf#moustaki"/>
     </Declaration>
     <EquivalentClasses>
         <Class IRI="#Factor"/>
@@ -137,10 +138,6 @@
         <Class IRI="#Factor"/>
         <Class abbreviatedIRI="foaf:Agent"/>
     </DisjointClasses>
-    <ClassAssertion>
-        <Class abbreviatedIRI="foaf:Person"/>
-        <NamedIndividual IRI="http://moustaki.org/foaf.rdf#moustaki"/>
-    </ClassAssertion>
     <ClassAssertion>
         <Class abbreviatedIRI="owl:Thing"/>
         <NamedIndividual IRI=""/>
