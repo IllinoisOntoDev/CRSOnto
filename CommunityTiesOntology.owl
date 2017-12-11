@@ -28,21 +28,20 @@
     <Prefix name="swrlb" IRI="http://www.w3.org/2003/11/swrlb#"/>
     <Prefix name="dcterms" IRI="http://purl.org/dc/terms/"/>
     <Prefix name="protege" IRI="http://protege.stanford.edu/plugins/owl/protege#"/>
-    <Import>http://purl.org/vocab/relationship/</Import>
-    <Import>http://purl.org/NET/c4dm/event.owl</Import>
-    <Import>http://purl.org/lis590od/Fall17/OrgRel</Import>
-    <Import>http://xmlns.com/foaf/0.1/</Import>
     <Declaration>
         <ObjectProperty IRI="#Has_Enlisted_Status"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="skos:Concept"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Suzy_Q"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Charge_Type"/>
+        <NamedIndividual IRI="#Spouse"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Spouse"/>
+        <Class IRI="#Charge_Type"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#Has_Member"/>
@@ -51,10 +50,10 @@
         <Class IRI="#Veteran"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#LTH_Discharge"/>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/employerOf"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="http://purl.org/vocab/relationship/employerOf"/>
+        <Class IRI="#LTH_Discharge"/>
     </Declaration>
     <Declaration>
         <Class IRI="#U.S._Marine_Corps"/>
@@ -66,10 +65,10 @@
         <Class IRI="http://www.example.com/Detention_Event"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Misdemeanor"/>
+        <Class IRI="#U.S._National_Guard"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#U.S._National_Guard"/>
+        <NamedIndividual IRI="#Misdemeanor"/>
     </Declaration>
     <Declaration>
         <Class IRI="#U.S._Coast_Guard"/>
@@ -90,10 +89,10 @@
         <ObjectProperty IRI="http://purl.org/vocab/relationship/participantIn"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Student"/>
+        <Class IRI="#Client"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Client"/>
+        <NamedIndividual IRI="#Student"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Retired"/>
@@ -105,10 +104,10 @@
         <Class IRI="#Romantic_Partner"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#U.S._Navy"/>
+        <Class IRI="#Active_Duty"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Active_Duty"/>
+        <Class IRI="#U.S._Navy"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#Has_Enlisted_In"/>
@@ -120,6 +119,9 @@
         <ObjectProperty IRI="#Age_At_First_Arrest"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/spouseOf"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Age"/>
     </Declaration>
     <Declaration>
@@ -127,6 +129,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="#U.S._Army"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/lifePartnerOf"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#UIUC_Campus_Police"/>
@@ -150,10 +155,10 @@
         <Class IRI="#U.S._Air_Force"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Unemployed"/>
+        <Class IRI="#Armed_Forces_Branch"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Armed_Forces_Branch"/>
+        <NamedIndividual IRI="#Unemployed"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#Romantic_Partner_Of"/>
@@ -168,6 +173,9 @@
         <Class IRI="#First_Arrest"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="http://purl.org/vocab/relationship/engagedTo"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#Significant_Other"/>
     </Declaration>
     <Declaration>
@@ -180,16 +188,40 @@
         <Class IRI="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="http://purl.org/vocab/relationship/lifePartnerOf"/>
+        <ObjectProperty abbreviatedIRI="event:hasProduct"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="http://purl.org/vocab/relationship/engagedTo"/>
+        <Class IRI="http://www.w3.org/2006/time#ProperInterval"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="http://purl.org/vocab/relationship/spouseOf"/>
+        <ObjectProperty abbreviatedIRI="foaf:knows"/>
     </Declaration>
     <Declaration>
-        <Class abbreviatedIRI="skos:Concept"/>
+        <ObjectProperty abbreviatedIRI="foaf:member"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="event:Factor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#hasTemporalDuration"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="foaf:Organization"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="event:hasAgent"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="foaf:Person"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="event:Product"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="event:hasFactor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://purl.org/lis590od/Fall17/OrgRel#OrganizationRelationship"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#Active_Duty"/>
