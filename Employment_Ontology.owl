@@ -1,0 +1,484 @@
+@prefix : <http://purl.org/lis590OD/Fall17/Employment_Ontology#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+@prefix dbp: <http://dbpedia.org/resource/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix wped: <http://en.wikipedia.org/wiki/> .
+@prefix dolce: <http://ontology.ip.rm.cnr.it/ontologies/DOLCE-Lite#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#> .
+@prefix communityties: <http://purl.org/lis590OD/Fall17/CommunityTies> .
+@prefix exOffenderEmp: <http://purl.org/lis590OD/Fall17/ExOffenderEmp> .
+@base <http://purl.org/lis590OD/Fall17/Employment_Ontology> .
+
+<http://purl.org/lis590OD/Fall17/Employment_Ontology> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/NET/c4dm/event.owl#place
+event:place rdf:type owl:ObjectProperty ;
+            rdfs:domain event:Event .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#EmploymentLocation
+:EmploymentLocation rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf event:place ;
+                    rdfs:domain :EmploymentEvent ,
+                                :WorkRelationship ;
+                    rdfs:range [ rdf:type owl:Restriction ;
+                                 owl:onProperty event:place ;
+                                 owl:someValuesFrom geo:SpatialThing
+                               ] ;
+                    rdfs:comment "A location where a person is employed udring an employment event. Multiple locations may be involved in an employment event, such as different branch locations of a company"@en ;
+                    rdfs:label "EmploymentLocation"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#employmentEventEndDate
+:employmentEventEndDate rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf <http://www.w3.org/2006/time#hasEnd> ;
+                        rdfs:domain [ owl:intersectionOf ( :Employee
+                                                           [ rdf:type owl:Class ;
+                                                             owl:unionOf ( :EmploymentEvent
+                                                                           :WorkRelationship
+                                                                         )
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                        rdfs:range [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.w3.org/2006/time#inXSDgYearMonth> ;
+                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                     owl:onDataRange xsd:dateTimeStamp
+                                   ] ;
+                        rdfs:comment "Date when an employment or work event (year, month) ends. Each employment event may only have 0 or 1 employment end date."@en ;
+                        rdfs:label "employmentEventEndDate"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#employmentEventStartDate
+:employmentEventStartDate rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf <http://www.w3.org/2006/time#hasBeginning> ;
+                          rdfs:domain [ owl:intersectionOf ( :Employee
+                                                             [ rdf:type owl:Class ;
+                                                               owl:unionOf ( :EmploymentEvent
+                                                                             :WorkRelationship
+                                                                           )
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] ;
+                          rdfs:range [ rdf:type owl:Restriction ;
+                                       owl:onProperty <http://www.w3.org/2006/time#inXSDgYearMonth> ;
+                                       owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onDataRange xsd:dateTimeStamp
+                                     ] ;
+                          rdfs:comment "Date (year, month) when an employment event or work relationship started"@en ;
+                          rdfs:label "employmentEventStartDate"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#employs
+:employs rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isEmployed ;
+         rdfs:domain :EmployingOrganization ;
+         rdfs:range :Employee ;
+         rdfs:comment "Indicates that an organization or indiviudal employs a an agent"@en ;
+         rdfs:label "employs"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#hasStudent
+:hasStudent rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isStudentof ;
+            rdfs:domain :School ;
+            rdfs:range :Student ;
+            rdfs:comment "Indicates that a student is enrollled at an institution"@en ;
+            rdfs:label "hasStudent"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#isEmployed
+:isEmployed rdf:type owl:ObjectProperty ;
+            rdfs:domain :Employee ;
+            rdfs:range :EmployingOrganization ;
+            rdfs:comment "Indicates that an individual is employed by an organization or self"@en ;
+            rdfs:label "isEmployedBy"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#isPositionOf
+:isPositionOf rdf:type owl:ObjectProperty ;
+              rdfs:comment "Denotes position or title that a person holds in employment event"@en ;
+              rdfs:label "isPositionOf"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#isStudentof
+:isStudentof rdf:type owl:ObjectProperty ;
+             rdfs:domain :Student ;
+             rdfs:range :School ;
+             rdfs:comment "Indicates that a student is enrolled at a school"@en ;
+             rdfs:label "isStudentOf"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#selfEmployedBy
+:selfEmployedBy rdf:type owl:ObjectProperty ;
+                owl:inverseOf :selfEmploys ;
+                rdfs:domain :Employee ;
+                rdfs:range foaf:Person .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#selfEmploys
+:selfEmploys rdf:type owl:ObjectProperty ;
+             rdfs:domain <http://www.w3.org/2000/10/swap/pim/contact#Person> ;
+             rdfs:range :Employee .
+
+
+###  http://www.w3.org/2006/time#hasBeginning
+<http://www.w3.org/2006/time#hasBeginning> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#hasEnd
+<http://www.w3.org/2006/time#hasEnd> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#emplymentType
+:emplymentType rdf:type owl:DatatypeProperty ;
+               rdfs:domain :EmploymentEvent ,
+                           :WorkRelationship ;
+               rdfs:range [ rdf:type rdfs:Datatype ;
+                            owl:oneOf [ rdf:type rdf:List ;
+                                        rdf:first "full-time" ;
+                                        rdf:rest [ rdf:type rdf:List ;
+                                                   rdf:first "part-time" ;
+                                                   rdf:rest rdf:nil
+                                                 ]
+                                      ]
+                          ] ;
+               rdfs:comment "Type of employment, either as part-time or full-time" ;
+               rdfs:label "employmentType"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#full-time
+:full-time rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :emplymentType ;
+           owl:propertyDisjointWith :part-time ;
+           rdfs:comment "An employment type where an individual works more hours than full-time. Number of hours iss not defined to allow wider use of this property."@en ;
+           rdfs:label "full-time"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#hasPosition
+:hasPosition rdf:type owl:DatatypeProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :EmploymentEvent
+                                         :WorkRelationship
+                                       )
+                         ] ;
+             rdfs:range xsd:string ;
+             rdfs:comment "The title or position an individual holds at a company in an EmploymentEvent or in a WorkRelationship"@en ;
+             rdfs:label "hasPosition"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#part-time
+:part-time rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :emplymentType ;
+           rdfs:comment "A type of employment, where the individual works less than full time. Number of hours is not defined to allow wider use of this property"@en ;
+           rdfs:label "part-time"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#studentPosition
+:studentPosition rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :hasPosition ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( :EmploymentEvent
+                                             :WorkRelationship
+                                           )
+                             ] ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "The position a student holds in relation to an EmploymentEvent or WorkRelationship"@en ;
+                 rdfs:label "studentPosition"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#weeklyHours
+:weeklyHours rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf <http://www.w3.org/2006/time#hours> ;
+             rdfs:domain :EmploymentEvent ,
+                         :SelfEmployed ;
+             rdfs:range xsd:nonNegativeInteger ;
+             rdfs:comment "The amount of hours a person works in a week, in an employment event" ;
+             rdfs:label "weeklyEmploymentHours"@en .
+
+
+###  http://www.w3.org/2006/time#hours
+<http://www.w3.org/2006/time#hours> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2006/time#inXSDgYearMonth
+<http://www.w3.org/2006/time#inXSDgYearMonth> rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/NET/c4dm/event.owl#Event
+event:Event rdf:type owl:Class .
+
+
+###  http://purl.org/lis590OD/Fall17/CommunityTies#Client
+<http://purl.org/lis590OD/Fall17/CommunityTies#Client> rdf:type owl:Class .
+
+
+###  http://purl.org/lis590OD/Fall17/CommunityTies#Employer
+<http://purl.org/lis590OD/Fall17/CommunityTies#Employer> rdf:type owl:Class ;
+                                                         owl:equivalentClass :EmployingOrganization .
+
+
+###  http://purl.org/lis590OD/Fall17/CommunityTies#School
+<http://purl.org/lis590OD/Fall17/CommunityTies#School> rdf:type owl:Class ;
+                                                       owl:equivalentClass :School .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Employee
+:Employee rdf:type owl:Class ;
+          owl:equivalentClass [ owl:intersectionOf ( foaf:Person
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :isEmployed ;
+                                                       owl:someValuesFrom foaf:Agent
+                                                     ]
+                                                   ) ;
+                                rdf:type owl:Class
+                              ] ;
+          rdfs:subClassOf foaf:Person ;
+          rdfs:comment "A person who is employed. The individual can be self employed, or employed by an organization." ;
+          rdfs:label "Employee"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#EmployingOrganization
+:EmployingOrganization rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( foaf:Organization
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :employs ;
+                                                                    owl:someValuesFrom :Employee
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf foaf:Organization ;
+                       rdfs:comment "The organization that employs an agent in an Employment Event" ;
+                       rdfs:label "EmployingOrganization"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#EmploymentEvent
+:EmploymentEvent rdf:type owl:Class ;
+                 rdfs:subClassOf <http://purl.org/lis590od/Fall17/OrgRel#OrganizationRelationship> ;
+                 rdfs:comment "Instance of employment, where an individual is employed by a organization" ;
+                 rdfs:label "EmploymentEvent"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#GraduateStudent
+:GraduateStudent rdf:type owl:Class ;
+                 rdfs:subClassOf :Student ;
+                 rdfs:comment "Student is enrolled in Graduate program, includes Masters, PhD"@en ;
+                 rdfs:label "GraduateStudent"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#HighSchoolStudent
+:HighSchoolStudent rdf:type owl:Class ;
+                   rdfs:subClassOf :Student ;
+                   rdfs:comment "Student Attends High School"@en ;
+                   rdfs:label "HighSchoolStudent"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#MiddleSchoolStudent
+:MiddleSchoolStudent rdf:type owl:Class ;
+                     rdfs:subClassOf :Student ;
+                     rdfs:comment "Student attends a Middle School"@en ;
+                     rdfs:label "MiddleSchoolStudent"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Retired
+:Retired rdf:type owl:Class ;
+         rdfs:subClassOf :WorkRelationship ;
+         rdfs:comment "An individual once held employment but is no longer working"@en ;
+         rdfs:label "Retired"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#School
+:School rdf:type owl:Class ;
+        owl:equivalentClass [ owl:intersectionOf ( foaf:Organization
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :hasStudent ;
+                                                     owl:someValuesFrom :Student
+                                                   ]
+                                                 ) ;
+                              rdf:type owl:Class
+                            ] ;
+        rdfs:subClassOf foaf:Organization ;
+        rdfs:comment "A learning institution where an indiviual works or studies"@en ;
+        rdfs:label "School"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#SelfEmployed
+:SelfEmployed rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Class ;
+                                    owl:unionOf ( [ owl:intersectionOf ( :WorkRelationship
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty :selfEmployedBy ;
+                                                                           owl:someValuesFrom foaf:Person
+                                                                         ]
+                                                                       ) ;
+                                                    rdf:type owl:Class
+                                                  ]
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :selfEmploys ;
+                                                    owl:someValuesFrom foaf:Person
+                                                  ]
+                                                )
+                                  ] ;
+              rdfs:subClassOf :WorkRelationship ;
+              rdfs:comment "Instance of employment where the individual is not employed by a company, and is their own boss" ;
+              rdfs:label "Self-employed"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Student
+:Student rdf:type owl:Class ;
+         owl:equivalentClass [ owl:intersectionOf ( foaf:Person
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :isStudentof ;
+                                                      owl:someValuesFrom :School
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
+                             ] ;
+         rdfs:subClassOf foaf:Person ;
+         rdfs:comment "An individual who is attending school"@en ;
+         rdfs:label "Student"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#StudentEmploymentEvent
+:StudentEmploymentEvent rdf:type owl:Class ;
+                        rdfs:subClassOf :EmploymentEvent ;
+                        rdfs:comment "An employment event where the individual has student as their position, and the employing organization is the school the indiviual attends. A student may have other concurrent employment events or work relationships"@en ;
+                        rdfs:label "StudentEmploymentEvent"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Supervisor
+:Supervisor rdf:type owl:Class ;
+            rdfs:subClassOf :Employee ;
+            rdfs:comment "An employee who oversees or supervises other employees" ;
+            rdfs:label "Supervisor"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#UndergradStudent
+:UndergradStudent rdf:type owl:Class ;
+                  rdfs:subClassOf :Student ;
+                  rdfs:comment "Student is enrolled in Associates or Bachelors program"@en ;
+                  rdfs:label "UndergraduateStudent"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Unemployed
+:Unemployed rdf:type owl:Class ;
+            rdfs:subClassOf :WorkRelationship ;
+            rdfs:comment "Event where a person is not employed by either a company or self" ;
+            rdfs:label "Unemployed"@en .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#WorkRelationship
+:WorkRelationship rdf:type owl:Class ;
+                  rdfs:subClassOf event:Event ;
+                  rdfs:comment "A event relating a person and employment, but doesn't include an organization. Can include unemployment and self employment" ;
+                  rdfs:label "WorkRelationship"@en .
+
+
+###  http://purl.org/lis590od/Fall17/OrgRel#OrganizationRelationship
+<http://purl.org/lis590od/Fall17/OrgRel#OrganizationRelationship> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2000/10/swap/pim/contact#Person
+<http://www.w3.org/2000/10/swap/pim/contact#Person> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+geo:SpatialThing rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+foaf:Agent rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Organization
+foaf:Organization rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+foaf:Person rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Acme_Corporation
+:Acme_Corporation rdf:type owl:NamedIndividual ,
+                           :EmployingOrganization .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Bernard_Haygood
+:Bernard_Haygood rdf:type owl:NamedIndividual ,
+                          foaf:Person ;
+                 :isEmployed :Acme_Corporation .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Bernice_Smithfield
+:Bernice_Smithfield rdf:type owl:NamedIndividual ,
+                             foaf:Person ;
+                    :isStudentof :South_Haven_High_School .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Coastways_Railroads
+:Coastways_Railroads rdf:type owl:NamedIndividual .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Eugene_Simmons
+:Eugene_Simmons rdf:type owl:NamedIndividual ,
+                         foaf:Person ;
+                :isStudentof :North_Haven_High_Shool .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#James_Rutherford
+:James_Rutherford rdf:type owl:NamedIndividual ,
+                           foaf:Person ;
+                  :isEmployed :Coastways_Railroads .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#North_Haven_High_Shool
+:North_Haven_High_Shool rdf:type owl:NamedIndividual ,
+                                 foaf:Organization ;
+                        rdfs:label "North_Haven_High_School" .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#Robert_Summers-Fellon
+:Robert_Summers-Fellon rdf:type owl:NamedIndividual ;
+                       :selfEmploys :Robert_Summers-Fellon .
+
+
+###  http://purl.org/lis590OD/Fall17/Employment_Ontology#South_Haven_High_School
+:South_Haven_High_School rdf:type owl:NamedIndividual ,
+                                  :School .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
